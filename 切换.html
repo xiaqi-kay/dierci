@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+
+		.sence{
+			width: 100px;
+            height: 300px;
+            border: 1px solid red;
+            position: relative;
+            margin:0 auto;
+		}
+
+		ul,li{
+			list-style: none;
+		}
+
+		ul{
+			width: 9999px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			overflow: hidden;
+		}
+        
+        .sence li{
+            float: left;
+            width: 100px;
+            height: 300px;
+            background: red
+        }
+        .sence li:nth-child(2){
+        	background: blue
+        }
+
+        .sence li:nth-child(3){
+        	background: yellow
+        }
+
+	</style>
+</head>
+<body>
+	
+	<div class="sence">
+	    <ul>
+	   		<li>1</li>
+	   		<li>2</li>
+	   		<li>3</li>
+	   	</ul>	
+	</div>
+   <button id="leftBtn">左</button>
+   <button id="rightBtn">右</button>
+</body>
+
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+	 
+	  var sence = $(".sence");
+      var ul = sence.find('ul')
+
+      var leftBtn = $("#leftBtn");
+      var rightBtn = $("#rightBtn");
+
+      var index = 0; //信号量
+
+
+      rightBtn.on("click",function(){
+
+          //拿到当前的便宜量
+
+          index+=1;
+
+          if (index>2) {
+          	index = 0
+          }
+          
+          ul[0].style.left = -100*index + 'px';
+
+
+      })  
+
+
+      leftBtn.on("click",function(){
+
+          //拿到当前的便宜量
+
+          index-=1;
+
+          if (index<0) {
+          	index = 2
+          }
+          
+          ul[0].style.left = -100*index + 'px';
+
+
+      })  
+</script>
+</html>
